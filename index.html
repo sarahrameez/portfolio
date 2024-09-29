@@ -8,35 +8,34 @@
     <link rel="stylesheet" href="mediaqueries.css">
 </head>
 <body>
-    <div id="particles-js">
-        <nav id="desktop-nav">
-            <div class="logo">Sarah Rameez</div>
-            <div>
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+    <nav id="desktop-nav">
+        <div class="logo">Sarah Rameez</div>
+        <div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav id="hamburger-nav">
+        <div class="logo">Sarah Rameez</div>
+        <div class="hamburger-menu">
+            <div class="hamburger-icon" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-        </nav>
-        <nav id="hamburger-nav">
-            <div class="logo">Sarah Rameez</div>
-            <div class="hamburger-menu">
-                <div class="hamburger-icon" onclick="toggleMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div class="menu-links">
-                    <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                    <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
-                    <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-                    <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-                </div>
+            <div class="menu-links">
+                <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
+                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
             </div>
-        </nav>
-        <section id="profile">
+        </div>
+    </nav>
+    <section id="profile particles-js">
             <div class=section__pic-container>
                 <img src="./assets/profile-pic.png" alt="Sarah Rameez profile picture">
             </div>
@@ -59,54 +58,54 @@
                     class="icon" onclick="location.href='https://github.com/sarahrameez/'">
                 </div>
             </div>
-        </section>
-        <section id="about">
-            <p class="section__text__p1">Get To Know More</p>
-            <h1 class="title">About Me</h1>
-            <div class="section-container">
-                <!-- <div class="section__pic-container">
-                    <img src="./assets/about-pic.png" 
-                    alt="profile picture"
-                    class="about-pic">
-                </div> -->
-                <div class="about-details-container">
-                    <div class="about-containers">
-                        <div class="details-container">
-                            <img src="./assets/experience.png" 
-                            alt="experience icon"
-                            class="icon">
-                            <h3>Experience</h3>
-                            <p><br>Corporate Banking Credit Risk Analyst (2+ years)<br>
-                            Consumer Goods Financial Analyst (2 years)</p>
-                        </div>
-                        <div class="details-container">
-                            <img src="./assets/education.png" 
-                            alt="education icon"
-                            class="icon">
-                            <h3>Education</h3>
-                            <p><br>Master of Information - Data Science (on-going)<br>
-                            Bachelor of Business Administration - Finance</p>
-                        </div>
+    </section>
+    <section id="about">
+        <p class="section__text__p1">Get To Know More</p>
+        <h1 class="title">About Me</h1>
+        <div class="section-container">
+            <!-- <div class="section__pic-container">
+                <img src="./assets/about-pic.png" 
+                alt="profile picture"
+                class="about-pic">
+            </div> -->
+            <div class="about-details-container">
+                <div class="about-containers">
+                    <div class="details-container">
+                        <img src="./assets/experience.png" 
+                        alt="experience icon"
+                        class="icon">
+                        <h3>Experience</h3>
+                        <p><br>Corporate Banking Credit Risk Analyst (2+ years)<br>
+                        Consumer Goods Financial Analyst (2 years)</p>
                     </div>
-                    <div class="text-container">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                            At vel sunt, inventore eum pariatur hic maxime nesciunt nisi. 
-                            Illo ipsa sint ducimus sed voluptate recusandae obcaecati eum placeat nemo temporibus.
-                            <br><br>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Labore minima explicabo in repudiandae numquam eum recusandae! 
-                            Quod iure laboriosam quisquam quasi expedita? Facilis expedita quia 
-                            voluptatum tenetur accusamus sapiente numquam!
-                        </p>
+                    <div class="details-container">
+                        <img src="./assets/education.png" 
+                        alt="education icon"
+                        class="icon">
+                        <h3>Education</h3>
+                        <p><br>Master of Information - Data Science (on-going)<br>
+                        Bachelor of Business Administration - Finance</p>
                     </div>
                 </div>
+                <div class="text-container">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+                        At vel sunt, inventore eum pariatur hic maxime nesciunt nisi. 
+                        Illo ipsa sint ducimus sed voluptate recusandae obcaecati eum placeat nemo temporibus.
+                        <br><br>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Labore minima explicabo in repudiandae numquam eum recusandae! 
+                        Quod iure laboriosam quisquam quasi expedita? Facilis expedita quia 
+                        voluptatum tenetur accusamus sapiente numquam!
+                    </p>
+                </div>
             </div>
-            <img src="./assets/arrow.png" 
-            alt="arrow icon" 
-            class="icon arrow"
-            onclick="location.href='./#skills'">
-        </section>
+        </div>
+        <img src="./assets/arrow.png" 
+        alt="arrow icon" 
+        class="icon arrow"
+        onclick="location.href='./#skills'">
+    </section>
         <section id="skills">
             <p class="section__text__p1">Explore My</p>
             <h1 class="title">Skills</h1>
@@ -240,7 +239,7 @@
         <section id="projects">
     
         </section>
-    </div>
+    
     <script src="particles.js"></script>
     <script src="app.js"></script>
     <script src="script.js"></script>
