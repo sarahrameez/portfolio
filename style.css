@@ -7,6 +7,12 @@
     background-color: #FDFDFD;
 }
 
+#particles-js {
+    width: 100%;
+    height: 100vh;
+    background: #f00; 
+}
+
 body {
     font-family: "Poppins", sans-serif;
 }
@@ -351,3 +357,5 @@ article {
 article .icon {
     cursor: default;
 }
+
+/* PROJECTS */
