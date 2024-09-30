@@ -408,10 +408,16 @@ article .icon {
     background: #FDFDFD;
 } */
 
+.color-container:hover {
+    color: cadetblue;
+    opacity: 90%;
+    border-color: cadetblue;
+}
+
 .project-img {
     border-radius: 2rem;
-    width: 90%;
-    height: 90%;
+    width: 70%;
+    height: 70%;
 }
 
 .project-title {
