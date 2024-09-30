@@ -398,3 +398,30 @@ article .icon {
 }
 
 /* PROJECTS */
+
+#projects {
+    position: relative;
+}
+
+/* .color-container {
+    border: rgb(163, 163, 163);
+    background: #FDFDFD;
+} */
+
+.project-img {
+    border-radius: 2rem;
+    width: 90%;
+    height: 90%;
+}
+
+.project-title {
+    margin: 1rem;
+    color: black;
+}
+
+.project-btn {
+    color: black;
+    border-color: rgb(163, 163, 163);
+}
+
+/* CONTACT */
