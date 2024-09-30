@@ -7,14 +7,6 @@
     background-color: #FDFDFD;
 }
 
-#particles-js {
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    z-index: -100;
-    background: #FDFDFD; 
-}
-
 body {
     font-family: "Poppins", sans-serif;
 }
@@ -165,13 +157,25 @@ section {
     display: flex;
 }
 
-/* PROFILE SECTION */
+#particles-js {
+    height: 100%;
+    width: 100%;
+}
+
+/* PROFILE SECTION */ß
 
 #profile {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 5rem;
-    height: 80vh;
+}
+
+.header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .section__pic-container {
@@ -182,6 +186,7 @@ section {
 }
 
 .section__text {
+    margin-top: 100px;
     align-self: center;
     text-align: center;
 }
@@ -198,6 +203,7 @@ section {
 .section__text__p2 {
     font-size: 1.75rem;
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 .title {
