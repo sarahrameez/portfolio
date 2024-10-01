@@ -268,7 +268,7 @@ section {
     transition: all 300ms ease;
     padding: 1rem;
     width: 8rem;
-    border-radius: 2rem;
+    border-radius: 1rem;
 }
 
 .btn-color-1,
@@ -408,14 +408,16 @@ article .icon {
     background: #FDFDFD;
 } */
 
+.project-container {
+    gap: 0.5rem;
+}
+
 .color-container:hover {
-    color: cadetblue;
-    opacity: 90%;
     border-color: cadetblue;
 }
 
 .project-img {
-    border-radius: 2rem;
+    border-radius: 1rem;
     width: 70%;
     height: 70%;
 }
@@ -430,4 +432,66 @@ article .icon {
     border-color: rgb(163, 163, 163);
 }
 
+.project-btn:hover {
+    background-color: cadetblue;
+}
+
 /* CONTACT */
+
+#contact {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 80vh;
+}
+
+.contact-info-upper-container {
+    display: flex;
+    justify-content: center;
+    border-radius: 1rem;
+    border: rgb(53,53,53) 0.1rem solid;
+    border-color: rgb(163, 163, 163);
+    background: rgb(250,250,250);
+    margin: 2rem auto;
+    padding: 0.5rem;
+}
+
+.contact-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem;
+}
+
+.contact-info-container p {
+    font-size: larger;
+}
+
+.contact-icon {
+    cursor: default;
+}
+
+.email-icon {
+    height: 2.5rem;
+}
+
+/* FOOTER */
+
+footer {
+    height: 16vh;
+    margin: 0 1rem;
+}
+
+footer nav {
+    height: 10vh;
+}
+
+
+footer p {
+    text-align: center;
+}
+
+footer .nav-links {
+    font-size: 1.25rem;
+}
