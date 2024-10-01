@@ -414,6 +414,7 @@ article .icon {
 
 .color-container:hover {
     border-color: cadetblue;
+    border: cadetblue;
 }
 
 .project-img {
