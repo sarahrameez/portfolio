@@ -407,9 +407,8 @@ article .icon {
     position: relative;
 }
 
-/* .color-container {
-    border: rgb(163, 163, 163);
-    background: #FDFDFD;
+/* #projects .details-container {
+    border-radius: 0.05rem;
 } */
 
 .project-container {
@@ -418,19 +417,23 @@ article .icon {
 }
 
 .color-container:hover {
-    border-color: #69b3a2;
-    border: #69b3a2;
-    background-color: #69b3a2;
+    border-color: #2F4F4F;
+    border: #2F4F4F;
+    background-color: #2F4F4F;
     .btn {
+        color: #FDFDFD;
         border-color: #FDFDFD;
     }
     .project-img {
-        opacity: 50%;
+        opacity: 30%;
+    }
+    .project-title {
+        color: #FDFDFD;
     }
 }
 
 .project-img {
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     width: 70%;
     height: 70%;
 }
@@ -451,7 +454,8 @@ article .icon {
 }
 
 .project-btn:hover {
-    background-color: #69b3a2;
+    background-color: #2F4F4F;
+    text-decoration: underline;
     .project-btn {
         color: #FDFDFD;
     }
