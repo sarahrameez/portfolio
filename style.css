@@ -345,7 +345,7 @@ section {
     padding: 1.5rem;
     flex: 1;
     background: #FDFDFD;
-    border-radius: 2rem;
+    border-radius: 1rem;
     border: rgb(53,53,53) 0.1rem solid;
     border-color: rgb(163,163,163);
     text-align: center;
@@ -416,24 +416,61 @@ article .icon {
     background-color: transparent;
 }
 
+.project-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.project-tag-container {
+    position: absolute; /* set button to an absolute position */
+    top: 50%; /* adjust the top position of the button */
+    left: 50%; /* adjust the left position of the button */
+    transform: translate(-50%, -50%); /* center the button */
+    z-index: 2; /* set a higher z-index than the image */
+    background-color: transparent;
+}
+
+.project-tag-btn {
+    border-radius: 0rem;
+    border-width: 0.1rem;
+    font-weight: 500;
+    background-color: #69b3a2;
+    opacity: 0%;
+    color: #FDFDFD;
+    cursor: default;
+}
+
+
 .color-container:hover {
-    border-color: #2F4F4F;
-    border: #2F4F4F;
-    background-color: #2F4F4F;
+    border-color: #69b3a2;
+    border: #69b3a2;
+    background-color: #69b3a2;
     .btn {
         color: #FDFDFD;
         border-color: #FDFDFD;
     }
+    .project-img-container {
+        background-color: #69b3a2;
+    }
     .project-img {
-        opacity: 30%;
+        opacity: 90%;
     }
     .project-title {
         color: #FDFDFD;
+    }
+    .project-tag-btn {
+        background-color: #69b3a2;
+        opacity: 100%;
+        color: #FDFDFD;
+        cursor: default;
     }
 }
 
 .project-img {
     border-radius: 0.5rem;
+    position: relative;
     width: 70%;
     height: 70%;
 }
@@ -451,12 +488,13 @@ article .icon {
 .project-btn {
     color: black;
     border-color: rgb(0,0,0);
+    border-width: 0.08rem;
 }
 
 .project-btn:hover {
-    background-color: #2F4F4F;
+    background-color: #69b3a2;
     text-decoration: underline;
-    .project-btn {
+    .project-btn, .project-tag {
         color: #FDFDFD;
     }
 }
