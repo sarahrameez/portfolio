@@ -416,6 +416,7 @@ article .icon {
 .project-container {
     gap: 0.5rem;
     background-color: transparent;
+    border-radius: 0.1rem;
 }
 
 .project-img-container {
@@ -445,6 +446,13 @@ article .icon {
     cursor: default;
 }
 
+.project-btn {
+    border-radius: 0.0rem;
+    border-width: 0.2rem;
+    font-weight: 600;
+    cursor: default;
+}
+
 
 .color-container:hover {
     border-color: #3c6e71;
@@ -465,7 +473,7 @@ article .icon {
     }
     .project-tag-btn {
         background-color: #3c6e71;
-        opacity: 100%;
+        opacity: 90%;
         color: #FDFDFD;
         cursor: default;
     }
@@ -480,7 +488,7 @@ article .icon {
 
 .project-title {
     margin: 1rem;
-    color: black;
+    color: rgb(53,53,53);
     background-color: transparent;
     text-align: center;
 }
@@ -490,9 +498,9 @@ article .icon {
 }
 
 .project-btn {
-    color: black;
-    border-color: rgb(0,0,0);
-    border-width: 0.08rem;
+    color: rgb(53,53,53);
+    border-color: rgb(53,53,53) solid;
+    border-width: 0.1rem;
 }
 
 .project-btn:hover {
