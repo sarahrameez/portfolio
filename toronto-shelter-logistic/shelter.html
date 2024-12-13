@@ -1,0 +1,878 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicting Shelter Availability in Toronto Using Logistic Regression</title>
+    <link rel="stylesheet" href="./style-shelter.css">
+    <link rel="stylesheet" href="../mediaqueries.css">
+    <link rel="icon" 
+     type="image/png" 
+     href="../assets/website-icon.png">
+</head>
+<body>
+    <div id="particles-js">
+        <nav id="desktop-nav">
+            <div class="logo">Sarah Rameez</div>
+            <div>
+                <ul class="nav-links">
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#skills">Skills</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <nav id="hamburger-nav">
+            <div class="logo">Sarah Rameez</div>
+            <div class="hamburger-menu">
+                <div class="hamburger-icon" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="menu-links">
+                    <li><a href="../index.html#about" onclick="toggleMenu()">About</a></li>
+                    <li><a href="../index.html#skills" onclick="toggleMenu()">Skills</a></li>
+                    <li><a href="../index.html#projects" onclick="toggleMenu()">Projects</a></li>
+                    <li><a href="../index.html#contact" onclick="toggleMenu()">Contact</a></li>
+                </div>
+            </div>
+        </nav>
+        <div class="header">
+            <h1 class="title">Predicting Shelter Availability in Toronto</h1>
+            <div class="section__text__p2 text-container">
+                <p class="first-text">Logistic Regression</p>
+            </div>
+            <div class="section__pic-container">
+                <img src="../assets/logistic-regression-shelter/portfolio-cover.png" 
+                alt="map of toronto"
+                class="about-pic">
+            </div>
+            <br>
+            <hr>
+            </div>
+        </div>
+    </div>
+    <section id="article">
+        <div class="text-container">
+            <h3>Introduction</h3>
+            <p>
+                The consequences of homelessness, already dire on their own, are only exacerbated in a large metropolitan city with high levels of crime and below freezing minimum temperatures. Toronto’s population growth, which has doubled in Ontario since 1971, has led to an increased demand for public services, particularly homeless shelters (Ontario Ministry of Finance, 2024). Currently, Toronto hosts 69 shelters across its 158 neighborhoods (City of Toronto, n.d.).
+                <br></br>
+                Despite efforts to expand capacity, the shelter system remains overwhelmed by the housing crisis, a surge in refugee claimants, and the opioid epidemic (City of Toronto, 2023). These challenges highlight the critical need for a data-driven approach to understand and predict shelter demand, enabling more efficient allocation of resources.
+                <br></br>
+                As per the latest available street needs assessment in 2021, only 90% of those experiencing homelessness reside in sheltered service, with almost 60% identifying as part of a marginalized group and more than three-quarters exhibiting some form of health challenge (City of Toronto, 2021). With limited capacity, it’s paramount to determine which shelters in the city have availability at any given night, based on the socioeconomic and environmental factors that impact shelter demand. 
+            </p>
+        </div>
+        <br>
+        <br>
+        <div class="text-container">
+            <h3>Research Question</h3>
+            <p>
+                The aim of this paper is to determine how socioeconomic, environmental, and demographic factors influence the availability of homeless shelters in Toronto, and whether these factors can be used to develop a predictive model for real-time shelter availability.
+                <br></br>
+                This paper attempts to analyze the impact of various surrounding factors on the homeless shelter occupancy rate in Toronto. In addition, we will consider crime rates in specific neighborhoods that could affect access to shelters. Our ultimate goal is to predict the likelihood of an individual finding shelter in Toronto based on their location and personal situation.
+                <br></br>
+                We believe our findings will underline the importance of incorporating economic, social, and environmental variables into predictive models to inform policy-making.
+            </p>
+        </div>
+        <br>
+        <br>
+        <div class="text-container">
+            <h3>Review of Similar Research</h3>
+            <p>
+                Toronto’s population has been growing significantly, between 1971 and 2023, Ontario’s population has doubled (Ontario Ministry of Finance, 2024). With this growth rate the needs for public healthcare and services, including the availability of emergency and longer-term homeless shelters has rapidly increased (Ontario Ministry of Finance, 2024). Despite the city’s best efforts to increase capacity, a gap in shelter availability continues to grow City of Toronto’s report (2023). 
+                <br></br>
+                The shelter system faces significant pressure due to the housing crisis, an influx of refugee claimants, and the opioid crisis, with 8,500 refugee claimants supported through emergency services identified as the major contributors towards the homeless population in the city (Toronto Shelter and Support Services, 2023).. Argintaru et al. (2013) identified significant gaps in healthcare access among homeless populations, findings that remain highly relevant as the population continues to grow at an unmanageable pace. Recent reports from Toronto Shelter and Support Services (2023) indicate persistent health disparities, with ongoing challenges such as opioid overdoses and limited access to mental health services, underscoring the enduring impact of these systemic issues. 
+                <br></br>
+                The high prevalence of chronic health conditions found by Argintaru et al. (2013) underscores the importance of including unemployment rates in determining shelter availability, as individuals with severe mental and physical health issues are often less likely to maintain long-term employment, which exacerbates their risk of homelessness and reliance on shelter services (Argintaru et al., 2013; Falconer et al., 2024; Jadidzadeh & Kneebone, 2018). These findings are particularly relevant to understanding the broader societal impacts of homelessness in Toronto, where similar challenges likely contribute to shelter occupancy trends and associated social issues. The authors emphasize the need for integrated healthcare and housing policies, which aligns with our research focus on evaluating the effectiveness of existing shelter services and their relationship to community well-being. This comparative perspective helps contextualize local data within national trends, providing a robust foundation for policy recommendations (Argintaru et al., 2013).
+                <br></br>
+                Research has shown that socioeconomic status, income inequality, and housing affordability are strongly linked to homelessness rates. For example, a lack of affordable housing often leads to increased shelter use, with marginalized communities (e.g., low-income families, racial minorities, or individuals with mental health or substance use issues) disproportionately affected (Jadidzadeh & Kneebone, 2018). This highlights the importance of unemployment and CPI (Consumer Price Index) as key factors that contribute to homelessness—since the rising cost of living disproportionately affects individuals with lower income and socioeconomic disadvantages, exacerbating their vulnerability to homelessness. 
+                <br></br>
+                Additionally, youth, LGBTQ+ individuals, and Indigenous populations face higher risks of homelessness due to specific social and cultural factors (Noble et al., 2022). Environmental factors such as weather conditions and seasonal fluctuations in shelter demand play a critical role in shelter occupancy. Research by Jadidzadeh and Kneebone (2018) highlights how Toronto experiences increased shelter demand during colder months, which impacts shelter capacity. This indicates that minimum temperature and precipitation could also play a major role in predicting shelter availability, given that these weather factors directly impact shelter occupancy, especially during extreme cold and winter weather events. These socioeconomic and demographic factors will be key in understanding the barriers to shelter access and predicting occupancy rates.
+                <br></br>
+                Falconer, Kneebone, and Wilkins (Noble et al., 2024) offer significant insights into homeless shelter use patterns in Toronto, which directly support our research question regarding the impact of socioeconomic, demographic, and environmental factors on shelter occupancy. The research reveals that the number of nightly shelter stays in Toronto has more than doubled since 2016, largely due to economic pressures such as rising living costs, insufficient income supports, and increased numbers of refugee claimants and asylum seekers that require shelter services (Falconer et al., 2024). These findings suggest that incorporating variables like housing affordability, unemployment rates, and immigration status into predictive models could improve accuracy in forecasting shelter demand.
+                <br></br>
+                The City of Toronto’s reports on shelter occupancy and resident deaths provide critical insights for predictive modeling of homelessness trends. These reports reveal significant demographic patterns, such as the majority of shelter resident deaths involving cisgender males and an average age of death notably lower than that of the general population. This information is crucial for identifying high-risk groups and forecasting shelter demand based on age, gender, and health vulnerabilities (City of Toronto, 2023; 2024).
+                <br></br>
+                Additionally, health-related trends, including the prevalence of opioid overdoses as a leading cause of death, underscore the intersection between homelessness and broader public health challenges. Integrating variables related to substance use and healthcare access into predictive models can enhance accuracy by reflecting the complex needs of the shelter population (City of Toronto, 2023). Moreover, these insights highlight the critical need for robust mental health and harm reduction services within the shelter system to address these complex challenges (Argintaru et al., 2013; City of Toronto, 2023). These findings highlight the importance of robust mental health and harm reduction services within the shelter system.
+                <br></br>
+                Gaps in shelter availability and access to services can be exacerbated by systemic issues such as lack of affordable housing, mental health resources, and discrimination in shelters (Dionne et al., 2023). Seasonal patterns in mortality and shelter usage further indicate that demand increases during colder months, pointing to the need for adaptive policies and resource allocation strategies. Data on shelter system flow—tracking the inflow of new residents and outflow to permanent housing—provides a dynamic view of homelessness. This data allows for the development of models that anticipate occupancy spikes and identify potential service gaps, enabling more responsive and effective interventions (City of Toronto, 2024).
+                <br></br>
+                The literature review serves to identify the key socioeconomic, health, and environmental factors that influence shelter occupancy in Toronto. By examining the existing body of research, we understand how issues like housing affordability, unemployment, chronic health conditions, and environmental factors such as extreme weather contribute to the demand for shelter services. These insights allow us to select relevant variables for our predictive models, helping us better forecast shelter demand and improve service delivery. 
+                <br></br>
+                In addition, we note that a majority of the studies already conducted opt for a long-term holistic view of homeless shelter availability and do not consider day-to-day variation in their analysis. Our research question accounts for daily variation in the availability of shelter with the goal of creating a model that is able to provide a real-time approximation of finding shelter given one’s demographic, socio-economic and environmental circumstances.
+            </p>
+        </div>
+        <br>
+        <br>
+        <div class="text-container">
+            <h3>Data Profile & Variable Selection</h3>
+            <p>
+                Our analysis integrates data from multiple sources, selected based on insights gained from a comprehensive literature review and domain expertise. In the context of a major metropolitan city situated in a cold climate, we identified key factors likely to influence the availability of homeless shelter spaces. These factors were selected to reflect the complex interplay of social, environmental, and economic conditions shaping shelter demand and access.
+                <br></br>
+                Given that many factors critical to our analysis can vary significantly across cities, we have chosen to focus specifically on Toronto, Ontario. This decision minimizes the risk of confounding effects arising from divergent trends in different cities, which could obscure meaningful patterns or relationships in the data. By concentrating on a single metropolitan area, we aim to capture the unique dynamics influencing homeless shelter availability in a cold-climate urban setting, ensuring the results are both focused and relevant to the local context. 
+                <br></br>
+                Note: The entire data cleaning process is defined in the appendix.
+            </p>
+            <ol class="indent">
+                <li>
+                    <strong>Daily Shelter Overnight Service and Capacity  (City of Toronto, 2024):</strong> This dataset provides comprehensive information on the occupancy and capacity of Toronto’s shelter system from January 2021 to September 2024. This dataset includes daily snapshots of the number of individuals accommodated, the types of shelter programs utilized, and the occupancy rates across various sectors, such as family and singles shelters.
+                </li>
+                <ul class="indent">
+                    <li>
+                        <i>Selected variables:</i> Our dependent variable is provided in this data, a binary variable where 1 indicates availability and 0 indicates no availability in a shelter at any given night. We have also sourced the following independent variables from this data: capacity (number of beds hosted by the shelter), sector (a factor variable categorizing the user groups that the shelter caters to), and the postal code that the shelter is located in.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    <strong>Major Crime Indicators (Toronto Police Service, 2024):</strong> This dataset provides detailed information on crime occurrences, categorized by date and neighborhood, between January 2021 and September 2024. This dataset includes offenses such as assault, break and enter, auto theft, robbery, and theft over $5,000, recorded at the offense and/or victim level. Each entry corresponds to a reported incident, allowing for analysis of crime patterns across different areas and time periods.
+                </li>
+                <ul class="indent">
+                    <li>
+                        <i>Selected variables:</i> The independent variable selected for this analysis was the count of crimes occurring at a given night, in the same neighborhood as the location of a shelter.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    <strong>Major Crime Indicators (Toronto Police Service, 2024):</strong> This dataset provides detailed information on crime occurrences, categorized by date and neighborhood, between January 2021 and September 2024. This dataset includes offenses such as assault, break and enter, auto theft, robbery, and theft over $5,000, recorded at the offense and/or victim level. Each entry corresponds to a reported incident, allowing for analysis of crime patterns across different areas and time periods.
+                </li>
+                <ul class="indent">
+                    <li>
+                        <i>Selected variables:</i> The independent variable selected for this analysis was the count of crimes occurring at a given night, in the same neighborhood as the location of a shelter.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    <strong>Toronto Weather Records (National Oceanic and Atmospheric Administration, 2024):</strong> The data was retrieved between January 2021 and September 2024 and accessed through a website specializing in historical weather records.
+                </li>
+                <ul class="indent">
+                    <li>
+                        <i>Selected variables:</i> For our analysis, we selected the minimum daily temperature (in degrees Celsius) and daily precipitation (in centimeters) for Toronto. These variables were chosen as they directly relate to environmental conditions that can influence the demand for homeless shelters, particularly in a cold-climate urban setting.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    <strong>Consumer Price Index Data (Government of Canada, 2007):</strong> The Consumer Price Index (CPI) is a key economic indicator that measures the average change over time in the prices paid by consumers for a basket of goods and services. This data was sourced from Statistics Canada for the periods encompassing January 2021 and September 2024, the national statistical agency responsible for producing such economic indicators.
+                </li>
+                <ul class="indent">
+                    <li>
+                        <i>Selected variables:</i> For our analysis, we utilized monthly, unadjusted CPI data specific to Toronto, with a base year of 2002. By analyzing this variable, we can assess the inflation trend over time and its potential impact on factors such as shelter availability in Toronto.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    <strong>Unemployment Data (Government of Canada, 2024):</strong> The unemployment data for this analysis is sourced from Statistics Canada’s monthly Labor Force Survey between January 2021 and September 2024. It provides detailed insights into labor market conditions across Canada. By incorporating unemployment data, we aim to explore the connection between labor market trends and the demand for homeless shelter services in Toronto.
+                </li>
+                <ul class="indent">
+                    <li>
+                        <i>Selected variables:</i> The independent variable selected for our analysis is Toronto’s unemployment rate. This data was manually extracted from each monthly report and compiled into a data frame. It is important to note that the figures provided are seasonally adjusted three-month moving averages of the unemployment rate.
+                    </li>
+                </ul>
+                <br>
+            </ol>
+        </div>
+        <br>
+        <div class="text-container">
+            <h3>Limitations & Assumptions</h3>
+            <p>
+                We have opted to focus on more recent shelter activity, recognizing that the shelter system has struggled to meet demand in recent years. This approach reflects the evolving dynamics of the current landscape, where pre-pandemic factors may no longer hold the same relevance.
+                <br></br>
+                There are several limitations in the project that may affect the comprehensiveness of the findings. While our model integrates variables such as unemployment rates, crime data, and weather conditions, these gaps limit our ability to fully capture the multifaceted factors that drive shelter occupancy. Similarly, while we use the Consumer Price Index (CPI) and unemployment rate as an economic indicator, this variable alone may not fully capture the nuanced economic pressures faced by homeless individuals, such as rent increases or income assistance gaps. 
+                <br></br>
+                Our focus on Toronto provides valuable localized insights, but limits model generalization to other regions. Cities with different socioeconomic conditions, housing policies, and climate dynamics may exhibit very different shelter occupancy trends. 
+                <br></br>
+                Our temporal scope emphasizes recent shelter activity to reflect current post-pandemic dynamics. While ensuring relevance, this approach also excludes historical factors that may influence the current shelter system, thus potentially overlooking long-term trends. Data aggregation, such as crime rates at the neighborhood level, may also mask localized variations near shelters, potentially impacting the precision of predictions.
+                <br></br>
+                It is important to recognize that certain datasets were not available to us due to our data requirements. Immigration intake, for example, is only available quarterly and only provided at the provincial level rather than the city level. Similarly, we could not incorporate neighborhood populations as they were last updated in 2021 and fail to account for a growing population. 
+                <br></br>
+                Our analysis also relies on several key assumptions. First, we assume that the datasets used are accurate and representative of Toronto’s conditions, though inconsistencies in reporting could introduce bias. The logistic regression model assumes independence of residuals, which may not fully account for spatial dependencies, such as the proximity of shelters influencing occupancy rates. Furthermore, demographic variables such as sector and neighborhood are treated uniformly, which may overlook the unique vulnerabilities of specific groups disproportionately affected by homelessness, including LGBTQ+ individuals and Indigenous populations. Despite these limitations, the study provides a focused and systematic analysis, forming a solid foundation for understanding and predicting shelter availability.
+            </p>
+        </div>
+        <br>
+        <div class="text-container">
+            <h3>Methodology</h3>
+            <p>
+                <h4>Descriptive Statistics</h4>
+                We utilized descriptive statistics with RStudio to systematically organize and summarize the variability present in our dataset, providing a comprehensive overview of its key quantitative characteristics. 
+                <br></br>
+                We examine the data from a temporal lens to identify seasonal patterns, as well as a spatial analysis across Toronto’s neighborhoods. We also compare the different sectors that shelters cater to in order to examine their effect on shelter availability. 
+                <br></br>
+                We also perform a correlation analysis of the numerical variables, specifically using Pearson’s correlation coefficient (r), to examine the relationships between shelter availability (Availability_Total) and key continuous predictors, including Capacity, Total_Crime, Minimum_Temperature, and Precipitation, Unemployment_Rate, and CPI_all. 
+                <br>
+                <br>
+                <h4>Regression Analysis</h4>
+                Logistic regression was employed in this project to model the relationship between predictors and shelter availability, a binary outcome variable (e.g., 0 and 1 represent two states of an event). Linear regression assumes that the target variable is continuous and that predicted values can span the entire real number range. However, for binary classification problems, linear regression can lead to unreasonable predictions (e.g., negative values or values greater than 1), making it unsuitable for describing the probability of an event.
+                <br></br>
+                In contrast, logistic regression uses the logistic (logit) function to map predicted values to the [0, 1] range, allowing the output to be interpreted as the probability of an event occurring. This probability reflects the likelihood that the event belongs to a particular category (commonly the positive class) given the input variables.
+                <br></br>
+                Additionally, the results of logistic regression can be further interpreted using odds ratios. Specifically, the exponentiated regression coefficients represent the effect of a predictor variable on the likelihood of the target event. For instance, an odds ratio greater than 1 indicates that an increase in the predictor variable raises the probability of the event occurring, while an odds ratio less than 1 suggests a decrease in probability. This interpretability is particularly useful for practical decision-making and understanding variable impacts.
+                <br></br>
+                Logistic regression not only provides meaningful and bounded predictions but also helps researchers better understand the influence of predictors, making it an ideal choice for binary classification problems. 
+            </p>
+        </div>
+        <br>
+        <div class="text-container">
+            <h3>Exploratory Analysis</h3>
+            <p>
+                Summary statistics revealed that the mean and median of ‘Availability_Total’ are 0.83 and 0, respectively, indicating the typical availability level is extremely low, with most shelters having no available spaces and only a few contributing to a slightly higher average. The ‘Average_Capacity’ of shelters was 107.64, with a standard deviation of 172.96, reflecting variability in shelter sizes. 
+                <br></br>
+                Key continuous predictors, including ‘Total_Crime’, ‘Minimum_Temperature’, and ‘Precipitation’, exhibit substantial variability, reflecting differences in neighborhood safety, seasonal temperature changes, and sporadic precipitation levels. 
+                <br></br>
+                The ‘Unemployment Rate’ and ‘CPI_All’ highlight economic conditions, with variations reflecting shifts in joblessness and cost of living, which could influence shelter demand. Categorical variables such as Sector and Hood_158 were excluded from numeric analyses but provide important context for spatial distribution and group-level differences in the dataset.
+                <br></br>
+                <table>
+                    <tr>
+                        <th>Variable</th>
+                        <th>Mean</th>
+                        <th>Standard Deviation</th>
+                    </tr>
+                    <tr>
+                        <td>Availability Total</td>
+                        <td>0.83</td>
+                        <td>2.52</td>
+                    </tr>
+                    <tr>
+                        <td>Availability Rate</td>
+                        <td>0.03</td>
+                        <td>0.08</td>
+                    </tr>
+                    <tr>
+                        <td>Capacity Total</td>
+                        <td>107.64</td>
+                        <td>172.96</td>
+                    </tr>
+                    <tr>
+                        <td>Total Crime</td>
+                        <td>1.44</td>
+                        <td>1.63</td>
+                    </tr>
+                    <tr>
+                        <td>CPI</td>
+                        <td>154.23</td>
+                        <td>7.51</td>
+                    </tr>
+                    <tr>
+                        <td>Unemployment Rate</td>
+                        <td>7.33</td>
+                        <td>1.43</td>
+                    </tr>
+                    <tr>
+                        <td>Min Temperature (celsius)</td>
+                        <td>6.45</td>
+                        <td>9.41</td>
+                    </tr>
+                    <tr>
+                        <td>Precipitation (cm)</td>
+                        <td>0.22</td>
+                        <td>0.58</td>
+                    </tr>
+                </table>
+                <br></br>
+                We conducted a temporal analysis of key variables to locate seasonal patterns. As expected, the availability of shelters has declined over time, despite the notable increase in capacity in an attempt to meet this demand. CPI increases steadily over time, while the unemployment rate demonstrates cyclical trends, potentially impacting shelter availability over time. Low average crime counts per neighborhood but notable variability, indicating safety discrepancies in different areas.
+                <br></br>
+                <div class="article__pic-container">
+                    <img src="../assets/logistic-regression-shelter/numeric-variables-over-time.png" 
+                    alt="Change in numeric variables over time"
+                    class="article-pic">
+                </div>
+                <br></br>
+                Analyzing the availability rate across sectors that shelters cater to reveals a gradual decline in availability across the family, men and women sectors. Availability across the shelters that cater to youth remains relatively constant across the past three years, while family focused shelters display spikes in availability, indicating the creation of new sectors to cater to the sector, most likely as a result of increased refugee intake following the Ukraine-Russia tensions.
+                <br></br>
+                <div class="article__pic-container">
+                    <img src="../assets/logistic-regression-shelter/histogram.png" 
+                    alt="histograms of numeric variables"
+                    class="article-pic">
+                </div>
+                <br></br>
+                Analysis of spatial patterns reveals disparities in shelter availability across Toronto’s neighborhoods. Certain areas experience higher demand due to socioeconomic and crime-related factors. Crime rates, particularly assault and robbery, appear to be correlated with shelters in high-demand neighborhoods. These sector-specific differences highlight opportunities for targeted resource allocation.
+                <br></br>
+                We are also interested in viewing the distributions of numerical variables during periods of availability and no availability across Toronto’s shelters. While weather and crime appear uniform regardless of availability, the below graph indicates higher CPI when there is no availability in shelters, while unemployment appears to be higher during periods of availability, which calls for a deeper exploration between the two variables. 
+                <br></br>
+                <div class="article__pic-container">
+                    <img src="../assets/logistic-regression-shelter/boxplot.png" 
+                    alt="boxplot of numeric variables"
+                    class="article-pic">
+                </div>
+                <br></br>
+                A correlation analysis reveals weak positive correlation (r = 0.18) between unemployment rate and shelter availability suggests potential lag effects of economic downturns on shelter demand. Slight negative correlation (r = -0.20) between CPI and availability underscores economic pressures on shelter accessibility. Environmental factors such as Precipitation and Minimum_Temperature demonstrated negligible correlations (r=0.00 and r=0.01, respectively), suggesting limited direct influence on shelter availability. Similarly, Total_Crime had a minimal association with Availability Total (r=0.02)
+                <br></br>
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Availability</th>
+                        <th>Capacity</th>
+                        <th>Crime</th>
+                        <th>CPI</th>
+                        <th>Unemployment</th>
+                        <th>Min Temperature</th>
+                        <th>Precipitation</th>
+                    </tr>
+                    <tr>
+                        <td>Availability</td>
+                        <td>1.00</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Capacity</td>
+                        <td>0.06</td>
+                        <td>1.00</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Crime</td>
+                        <td>0.02</td>
+                        <td>0.02</td>
+                        <td>1.00</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>CPI</td>
+                        <td>-0.20</td>
+                        <td>0.05</td>
+                        <td>0.09</td>
+                        <td>1.00</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Unemployment</td>
+                        <td>0.18</td>
+                        <td>-0.05</td>
+                        <td>-0.07</td>
+                        <td>-0.69</td>
+                        <td>1.00</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Min Temperature</td>
+                        <td>0.01</td>
+                        <td>0.01</td>
+                        <td>0.07</td>
+                        <td>0.13</td>
+                        <td>-0.02</td>
+                        <td>1.00</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Precipitation</td>
+                        <td>0.00</td>
+                        <td>0.00</td>
+                        <td>-0.01</td>
+                        <td>0.04</td>
+                        <td>-0.02</td>
+                        <td>0.05</td>
+                        <td>1.00</td>
+                    </tr>
+                </table>
+                <br></br>
+                <div class="article__pic-container">
+                    <img src="../assets/logistic-regression-shelter/correlation-heatmap.png" 
+                    alt="boxplot of numeric variables"
+                    class="article-pic">
+                </div>
+            </p>
+        </div>
+        <br>
+        <div class="text-container">
+            <h3>Logistic Regression</h3>
+            <p>
+                <h4>Data Transformation</h4>
+                <strong>Rescaling:</strong> The unemployment rate was multiplied by 100 to prevent significant skew in the odds ratio.
+                <br></br>
+                <strong>Resampling the Dependent Variable:</strong> The dataset was resampled to address the unequal representation of shelter availability versus non-availability. Only 27.4% of the data reflected shelter availability, creating a significant class imbalance. To mitigate this, cases of availability were resampled to match the number of non-availability cases. While this approach increased the dataset size from 173,642 observations to 242,584, it resulted in noticeable improvements in key model assessment metrics, enhancing the overall performance and interpretability of the logistic regression model.
+                <br></br>
+                <h4>Model Interpretation</h4>
+                <h5>Neighborhoods</h5>
+                Top 4 neighborhoods most and least likely to find shelter (using reference neighborhood 172 - Dovercourt village).
+                <br></br>
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Variable</th>
+                        <th>Estimate</th>
+                        <th>Standard Error</th>
+                        <th>Z-value</th>
+                        <th>P-value</th>
+                        <th>Odds Ratio</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Neighborhoods (Most Likely)</strong></td>
+                        <td>East Willowdale</td>
+                        <td>3.824</td>
+                        <td>0.587</td>
+                        <td>6.517</td>
+                        <td>0.000</td>
+                        <td>45.772</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Trinity-Bellwoods</td>
+                        <td>3.450</td>
+                        <td>0.358</td>
+                        <td>9.626</td>
+                        <td>0.000</td>
+                        <td>31.503</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Downsview</td>
+                        <td>2.554</td>
+                        <td>0.067</td>
+                        <td>38.371</td>
+                        <td>0.000</td>
+                        <td>12.859</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Morningside</td>
+                        <td>2.509</td>
+                        <td>0.193</td>
+                        <td>12.994</td>
+                        <td>0.000</td>
+                        <td>12.297</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Neighborhoods (Least Likely)</strong></td>
+                        <td>West Humber-Clairville</td>
+                        <td>-1.992</td>
+                        <td>0.068</td>
+                        <td>-29.506</td>
+                        <td>0.000</td>
+                        <td>0.136</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Mimico-Queensway</td>
+                        <td>-3.298</td>
+                        <td>0.163</td>
+                        <td>-20.268</td>
+                        <td>0.000</td>
+                        <td>0.037</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Oakwood Village</td>
+                        <td>-3.569</td>
+                        <td>0.229</td>
+                        <td>-15.554</td>
+                        <td>0.000</td>
+                        <td>0.028</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Wexford/Maryvale</td>
+                        <td>-3.727</td>
+                        <td>0.181</td>
+                        <td>-20.595</td>
+                        <td>0.000</td>
+                        <td>0.024</td>
+                    </tr>
+                </table>
+                <br>
+                Neighborhood 152 (East Willowdale) has an Estimate of 3.824 with a highly significant P Value (less than 0.001), making its Odds Ratio 45.772. This means residents here are 45 times more likely to find shelter compared to the reference neighborhood, making it the most likely neighborhood to find availability of shelter, holding other factors constant. Similarly, Neighborhood 081 (Trinity Bellwoods) demonstrates favorable conditions with an Estimate of 3.45 and a very low Standard Error (0.358), ensuring high confidence in its result. The Odds Ratio of 31.503 highlights significantly increased accessibility in this neighborhood. The odds ratio dropped off fairly steeply after this high point, with 36 of the 59 neighborhoods exhibiting odds ratio below 1 for finding availability as compared to the reference neighborhood. 
+                <br></br>
+                On the other end, Neighborhood 119 (Wexford/Maryvale) has an Odds Ratio of 0.024, meaning residents here are 96% less likely to find shelter compared to the baseline. Another challenging area is Neighborhood 160 (Mimico-Queensway), with an Odds Ratio of 0.037, showing severe barriers to shelter access.
+                <br></br>
+                <br>
+                <h5>Sectors</h5>
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Variable</th>
+                        <th>Estimate</th>
+                        <th>Standard Error</th>
+                        <th>Z-value</th>
+                        <th>P-value</th>
+                        <th>Odds Ratio</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Sector (reference sector 'family')</strong></td>
+                        <td>Men</td>
+                        <td>-0.982</td>
+                        <td>0.022</td>
+                        <td>-44.197</td>
+                        <td>0.000</td>
+                        <td>0.375</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Mixed Adult</td>
+                        <td>-0.078</td>
+                        <td>0.020</td>
+                        <td>-3.953</td>
+                        <td>0.000</td>
+                        <td>0.925</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Women</td>
+                        <td>-0.504</td>
+                        <td>0.022</td>
+                        <td>-22.595</td>
+                        <td>0.000</td>
+                        <td>0.604</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Youth</td>
+                        <td>0.098</td>
+                        <td>0.023</td>
+                        <td>4.280</td>
+                        <td>0.000</td>
+                        <td>1.103</td>
+                    </tr>
+                </table>
+                <br>
+                Residents in men’s shelters are approximately 62.5% less likely (1 - 0.375 = 0.625) to find availability compared to family shelters, holding other factors constant. The results are highly significant, as indicated by the P-value and the low standard error (0.029), suggesting high confidence in this finding. Men’s shelters thus face the greatest challenges in availability compared to the reference group, according to our model.
+                <br></br>
+                Women’s shelters show notable but smaller barriers compared to men’s shelters, showing a 39.6% lower likelihood (1 - 0.604 = 0.396) of finding availability compared to family shelters at a highly significant level. Residents in mixed adult shelters, meanwhile, are far less likely (by 7.5%) to find availability compared to family shelters, though the effect is small due to having significance only at the 0.05 level. This indicates that mixed adult shelters perform similarly to family shelters, with only a slight reduction in odds. Youth shelters are 10.3% more likely to have availability compared to family shelters. This is a small positive effect but statistically significant, with a moderate standard error of 0.023. This suggests slightly better access to shelters for youth compared to families.
+                <br></br>
+                These insights highlight disparities in shelter availability among different sectors. Men’s shelters face significant challenges, while youth shelters show slight improvements in availability compared to the reference group.
+                <br></br>
+                <h5>Other Variables</h5>
+                <table>
+                    <tr>
+                        <th>Variable</th>
+                        <th>Estimate</th>
+                        <th>Standard Error</th>
+                        <th>Z-value</th>
+                        <th>P-value</th>
+                        <th>Odds Ratio</th>
+                    </tr>
+                    <tr>
+                        <td>Capacity</td>
+                        <td>0.000</td>
+                        <td>0.000</td>
+                        <td>8.664</td>
+                        <td>0.000</td>
+                        <td>1.000</td>
+                    </tr>
+                    <tr>
+                        <td>Crime</td>
+                        <td>0.005</td>
+                        <td>0.003</td>
+                        <td>1.694</td>
+                        <td>0.090</td>
+                        <td>1.005</td>
+                    </tr>
+                    <tr>
+                        <td>CPI</td>
+                        <td>-0.071</td>
+                        <td>0.001</td>
+                        <td>-77.68</td>
+                        <td>0.000</td>
+                        <td>0.931</td>
+                    </tr>
+                    <tr>
+                        <td>Unemployment Rate</td>
+                        <td>0.085</td>
+                        <td>0.005</td>
+                        <td>18.346</td>
+                        <td>0.000</td>
+                        <td>1.089</td>
+                    </tr>
+                    <tr>
+                        <td>Min Temperature</td>
+                        <td>0.004</td>
+                        <td>0.000</td>
+                        <td>8.163</td>
+                        <td>0.000</td>
+                        <td>1.004</td>
+                    </tr>
+                    <tr>
+                        <td>Precipitation</td>
+                        <td>0.014</td>
+                        <td>0.008</td>
+                        <td>1.770</td>
+                        <td>0.077</td>
+                        <td>1.014</td>
+                    </tr>
+                </table>
+                <br></br>
+                The results indicate that shelter availability is not impacted by total capacity, suggesting that shelters face challenges in providing available beds regardless of their funding or capacity, reflecting the systemic strain on the shelter network.
+                <br></br>
+                Contrary to our earlier assumptions, total crime and precipitation have no statistically significant impact on shelter availability, with p-values of 0.09 and 0.077, respectively. While precipitation shows a slightly positive association, this effect is not significant enough to draw reliable conclusions.
+                <br></br>
+                Minimum temperature, however, has a small but significant effect (OR = 1.004, p < 0.001), suggesting that warmer temperatures marginally improve shelter availability. This finding likely reflects seasonal demand fluctuations, where milder weather reduces the immediate pressure on shelter systems.
+                <br></br>
+                Economic factors like the unemployment rate exhibit a small but significant positive influence, indicating that for every 1-unit increase in the unemployment rate, the odds of finding shelter availability increase by 8.9%, holding all other factors constant. This could be due to a lag effect, where rising unemployment initially reduces demand for shelters as individuals rely on other support systems before seeking shelter. Higher inflation, as measured by CPI, is strongly linked to reduced shelter availability. For every 1-unit increase in CPI, the odds of finding shelter decrease by 6.9%. This finding highlights the economic pressures that inflation exerts on both the shelter system and individuals seeking services, likely reflecting decreased capacity to meet demand during periods of rising costs.
+                <br></br>
+                Overall, the findings emphasize that while environmental and economic factors play a role, systemic constraints within the shelter system remain a critical barrier to improving availability.
+                <br></br>
+                <h4>Model Assessment</h4>
+                <h5>Overall Model Fit: Likelihood Ratio Test</h5>
+                <table>
+                    <tr>
+                        <th>Model</th>
+                        <th>Residual Deviance</th>
+                        <th>Degrees of Freedom (Residual)</th>
+                        <th>DF</th>
+                        <th>Deviance Difference</th>
+                        <th>Pr (>Chi)</th>
+                    </tr>
+                    <tr>
+                        <td>Model 1 (Null Model)</td>
+                        <td>336,293</td>
+                        <td>242,583</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Model 2 (Full Model)</td>
+                        <td>274,397</td>
+                        <td>242,514</td>
+                        <td>69</td>
+                        <td>61,895</td>
+                        <td> less than 2.2e-16</td>
+                    </tr>
+                </table>
+                <br>
+                The Likelihood Ratio Test compares two models: model 1 (Null Model) includes only the intercept, assuming shelter availability is random and unrelated to any variables, while model 2 (Full Model): Includes all variables like neighborhood, capacity, and economic factors.
+                <br></br>
+                The results provide critical insights into model performance. Model 1, the null model, has a high residual deviance of 336,293, indicating a poor fit to the data. In contrast, Model 2, which includes the selected explanatory variables, demonstrates a significantly improved fit, with a lower residual deviance of 274,397. The improvement in model fit’s quantified by a deviance difference of 61,895 between the two models, using 69 degrees of freedom. This improvement is additionally validated by an extremely low p-value (< 2.2e-16), confirming that the addition of explanatory variables is statistically significant.
+                <br></br>
+                These findings highlight that the full model provides a substantially better explanation of shelter availability compared to the null model. This result underscores the importance of including selected variables such as capacity, neighborhood, and economic factors in the analysis to capture the complexity of shelter availability dynamics effectively.
+                <br></br>
+                <h5>Confusion Matrix</h5>
+                <table>
+                    <tr>
+                        <th>Prediction</th>
+                        <th>Actual: No Shelter (0)</th>
+                        <th>Actual: Shelter (1)</th>
+                        <th>Explanation</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Predicted: No Shelter (0)</strong></td>
+                        <td>True Positives (TP): 85,599</td>
+                        <td>False Negatives (FN): 36,014</td>
+                        <td>Correctly and incorrectly predicts no shelter availability (majority class).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Predicted: Shelter (1)</strong></td>
+                        <td>False Positives (FP): 35,693</td>
+                        <td>True Negatives (TN): 85,278</td>
+                        <td>Correctly and incorrectly predicts shelter availability.</td>
+                    </tr>
+                </table>
+                <br>
+                The matrix indicates that while model performs exceptionally well for the majority class (“No Shelter”), with a high number of true positives, it struggles with the minority class (“Shelter Availability”), as indicated by the large number of false negatives (31,008). This suggests it frequently incorrectly classifies cases where shelter availability exists, which reflects class imbalance in the dataset, where “No Shelter” cases dominate, given that availability in shelters across Toronto are sparse. 
+                <br></br>
+                The confusion matrix highlights that while the model performs well for the majority class (“No Shelter”), it faces challenges with the minority class (“Shelter Availability”). This is evident from the high number of 36,014 false negatives. Additionally, the model incorrectly predicts 35,693 false positives, further indicating difficulty in distinguishing between classes. Despite resampling the data to counter false predictions, the overall performance continues to reflect the inherent imbalance in the dataset, where “No Shelter” cases dominate. This imbalance likely stems from the sparse availability of shelters across Toronto, emphasizing the need for techniques to improve minority class prediction.
+                <br></br>
+                <h5>Classification Metrics</h5>
+                <table>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                        <th>Explanation</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Accuracy</strong></td>
+                        <td>70.44%</td>
+                        <td>Overall proportion of correct predictions.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sensitivity</strong></td>
+                        <td>70.57%</td>
+                        <td>True positive rate: the model effectively predicts "No Shelter Availability."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Specificity</strong></td>
+                        <td>70.31%</td>
+                        <td>True negative rate: struggles to predict "Shelter Availability" correctly.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F1 Score</strong></td>
+                        <td>70.40%</td>
+                        <td>Balances precision and recall for "Shelter Availability."</td>
+                    </tr>
+                </table>
+                <br>
+                The results indicate moderate accuracy, with the model correctly predicting 70.44% of cases overall. However, this performance must be interpreted cautiously, as the balanced accuracy across sensitivity (70.57%) and specificity (70.31%) suggests the model performs similarly for both “No Shelter Availability” and “Shelter Availability.” The F1 Score (70.40%) reflects a balance between precision and recall, the model’s performance highlights room for improvement in distinguishing between the two classes.
+                <br></br>
+                <h5>Variance Inflation Factor (VIF)</h5>
+                <table>
+                    <tr>
+                        <th>Variable</th>
+                        <th>VIF</th>
+                        <th>Interpretation</th>
+                    </tr>
+                    <tr>
+                        <td>Capacity</td>
+                        <td>1.91</td>
+                        <td>Low multicollinearity, no concern.</td>
+                    </tr>
+                    <tr>
+                        <td>Sector</td>
+                        <td>9.96</td>
+                        <td>Moderate multicollinearity, acceptable for multiple categories.</td>
+                    </tr>
+                    <tr>
+                        <td>Neighborhood</td>
+                        <td>19.97</td>
+                        <td>High multicollinearity, likely due to multiple neighborhood categories.</td>
+                    </tr>
+                    <tr>
+                        <td>Crime</td>
+                        <td>1.26</td>
+                        <td>Very low multicollinearity.</td>
+                    </tr>
+                    <tr>
+                        <td>CPI</td>
+                        <td>2.22</td>
+                        <td>Minimal multicollinearity, not a concern.</td>
+                    </tr>
+                    <tr>
+                        <td>Unemployment Rate</td>
+                        <td>2.16</td>
+                        <td>Minimal multicollinearity, no issue.</td>
+                    </tr>
+                    <tr>
+                        <td>Min Temperature</td>
+                        <td>1.04</td>
+                        <td>Negligible multicollinearity.</td>
+                    </tr>
+                    <tr>
+                        <td>Precipitation</td>
+                        <td>1.00</td>
+                        <td>Negligible multicollinearity.</td>
+                    </tr>
+                </table>
+                <br>
+                Most variables have low VIF values, indicating minimal collinearity issues. The neighborhood variable shows high VIF (19.97), suggesting potential redundancy among its categories. This may need further analysis or dimensionality reduction.
+                <br></br>
+                <h5>Pseudo R-Squared</h5>
+                <table>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                        <th>Explanation</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Log-Likelihood (llh)</strong></td>
+                        <td>-1.371987e+05</td>
+                        <td>Indicates how well the full model fits the data. Higher (less negative) is better.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Log-Likelihood (llhNull)</strong></td>
+                        <td>-1.681464e+05</td>
+                        <td>Indicates fit for the null model (intercept only).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>G² (Deviance Difference)</strong></td>
+                        <td>6.189540e+04</td>
+                        <td>Improvement in model fit when predictors are added.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>McFadden R²</strong></td>
+                        <td>0.1841</td>
+                        <td>Indicates moderate fit (values between 0.2-0.4 are good).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>r2ML</strong></td>
+                        <td>0.2252</td>
+                        <td>Explains 18.34% of the variance in the dependent variable.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>r2CU</strong></td>
+                        <td>0.3003</td>
+                        <td>Explains 26.76% of the variance in the dependent variable (adjusted pseudo-R²).</td>
+                    </tr>
+                </table>
+                <br>
+                Pseudo R-squared evaluates the goodness-of-fit for logistic regression models. We have already confirmed from our analysis of deviance table that the full model significantly outperforms the null model, evidenced by higher log-likelihood and deviance improvement. The large value for the G² indicates that the predictors meaningfully contribute to explaining shelter availability. 
+                <br></br>
+                The McFadden R² is often used in logistic regression to assess the proportion of variance explained, and indicates a moderate model fit, while the r2ML and r2CU indicate higher levels of variation being explained by the model. The r2CU tends to provide a more optimistic view by accounting for variance that could otherwise be underestimated.
+                <br></br>
+                While the model demonstrates substantial improvement over the null model, the moderate pseudo-R² values suggest that other factors may also contribute to shelter availability, highlighting the complexity of the problem at hand.
+            </p>
+        </div>
+        <br>
+        <div class="text-container">
+            <h3>Discussion & Recommendations</h3>
+            <p>
+                The results provide critical insights into how socioeconomic, environmental, and demographic factors influence shelter availability in Toronto, offering important insights that could inform public policy. Geographic disparities are striking; neighborhoods such as East Willowdale and Trinity-Bellwoods demonstrate greater odds of availability compared to areas like Wexford/Maryvale and Mimico-Queensway, which may reflect unequal resource distribution and systemic inequities. Similarly, sector analysis reveals that men’s shelters face the greatest challenges, highlighting the need for tailored interventions across sectors.
+                <br></br>
+                Economic factors also play an important role in determining shelter availability. Rising unemployment correlates with marginal improvements in availability, possibly due to delayed reliance on shelters, while higher inflation significantly reduces availability, indicating economic pressures on both shelters and individuals seeking services. Environmental conditions, such as warmer temperatures, show minor but significant impacts, likely reflecting reduced seasonal demand, though precipitation and crime appear to have no meaningful influence.
+                <br></br>
+                Despite incorporating multiple, varied predictors, the model highlights underlying systemic challenges, with capacity lacking in any meaningful relationship with availability. This suggests that the shelter system is overburdened as a whole, and increasing capacity alone may not resolve accessibility issues without addressing the operational inefficiencies inherent in the system, most likely due to a lack of resources for non-profit and public services like shelter organizations.
+                <br></br>
+                While the predictive model demonstrates moderate fit and accuracy in its assessment, the challenges and limitations in identifying shelter availability cases reflect the need for additional data and more sophisticated modeling techniques.
+                <br></br>
+                These findings suggest that resource allocation should prioritize neighborhoods and sectors facing the greatest barriers to access, with targeted investments during inflationary periods to alleviate economic pressures. Operational audits of shelter systems could identify inefficiencies and optimize resource utilization, while integrating immigration trends and broader socioeconomic data could enhance future predictive models. By addressing these systemic issues, public policy can more effectively ensure equitable and accessible shelter services across Toronto.
+                <br></br>
+                We also recommend that future iterations of the model consider a longer time period, spanning 10 years instead of 3, which would also reduce the overall influence of covid-specific factors. It would also be beneficial to approximate city level immigration and population changes on a monthly level. We also suggest in depth interviews with those managing Toronto’s shelters to curate an improved selection of key variables, for more accurate model performance.
+            </p>
+        </div>
+        <br></br>
+        <div class="text-container">
+            <h3>Conclusion</h3>
+            <p>
+                This research provides a nuanced understanding of the factors influencing shelter availability in Toronto, revealing both systemic challenges and opportunities for targeted intervention. Geographic and sectoral disparities emphasize the inequities in resource allocation, while economic pressures such as inflation further strain the shelter system. By performing a multiple logistic regression, we have determined that increasing capacity by itself will not resolve accessibility issues, as availability is impacted by broader operational inefficiencies and economic constraints rather than sheer capacity limits.
+                <br></br>
+                The model demonstrates moderate predictive success but highlights the complex interplay of shelter dynamics with our selected variables. While socioeconomic and environmental variables offer valuable insights, they also underscore the need for more comprehensive data and advanced analytical techniques to fully capture the multifaceted nature of shelter availability.
+                <br></br>
+                Ultimately, this study points to the urgent need for policy measures that address not only capacity expansion but also systemic inequities and inefficiencies. By leveraging data-driven insights, Toronto can develop more equitable, responsive, and sustainable solutions to meet the growing demand for shelter services, and better address the needs of the homeless population of Toronto.
+            </p>
+        </div>
+        <br></br>
+        <div class="text-container">
+            <h3>References</h3>
+            <p>
+                Argintaru, N., Chambers, C., Gogosis, E., Farrell, S., Palepu, A., Klodawsky, F., & Hwang, S. W. (2013). A cross-sectional observational study of unmet health needs among homeless and vulnerably housed adults in three Canadian cities. BMC Public Health, 13(1), 577. 
+                <br>
+                City of Toronto. (2021). Social procurement program update: Progress and next steps [Background file]. 
+                <br>
+                City of Toronto. (2023). Annual review of statistics on deaths of shelter residents. 
+                <br>
+                City of Toronto. (2023, 2024). Annual review of statistics on deaths of shelter residents. City of Toronto. Retrieved from https://www.toronto.ca
+                <br>
+                City of Toronto. (2024). Daily Shelter & Overnight Service Occupancy & Capacity [Dataset]. https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/
+                <br>
+                City of Toronto. (2022, April 12). Find Your Neighbourhood (Toronto, Ontario, Canada). City of Toronto; City of Toronto. https://www.toronto.ca/city-government/data-research-maps/neighbourhoods-communities/neighbourhood-profiles/find-your-neighbourhood/
+                <br>
+                City of Toronto. (n.d.). Shelter census. 
+                <br>
+                City of Toronto. (n.d.). Toronto maps. 
+                <br>
+                Dionne, M.-A., Laporte, C., Loeppky, J., & Miller, A. (2023). A review of Canadian homelessness data. Income Research Paper Series.
+                <br>
+                Falconer, R., Kneebone, R., & Wilkins, M. (2024). Social policy trends: Homeless shelter use in Toronto. The School of Public Policy Publications, 17(1). 
+                <br>
+                Government of Canada, S. C. (2007, June 19). Consumer Price Index, monthly, not seasonally adjusted. https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=1810000401 
+                <br>
+                Government of Canada, S. C. (2024). Ontario’s labour market | ontario.ca. https://www.ontario.ca/page/labour-market#reports
+                <br>
+                Jadidzadeh, A., & Kneebone, R. (2018). Patterns and intensity of use of homeless shelters in Toronto. Canadian Public Policy, 44(4), 342–355. 
+                <br>
+                National Oceanic and Atmospheric Administration. (2024). Toronto Weather Records. https://www.extremeweatherwatch.com/cities/toronto 
+                <br>
+                Noble, A., Owens, B., Thulien, N., & Suleiman, A. (2022). The impact of the COVID-19 pandemic on youth experiencing homelessness in Toronto, Canada. PLOS ONE, 17(8), e0273502. 
+                <br>
+                Ontario Ministry of Finance. (2024). Chapter 1: Demographic trends and projections 2024. In Ontario's long-term report on the economy 2024. 
+                <br>
+                Toronto Police Service. (2024). Major Crime Indicators Open Data [Dataset]. https://data.torontopolice.on.ca/datasets/TorontoPS::major-crime-indicators-open-data/about 
+            </p>
+        </div>
+
+
+    </section>
+
+</body>
+</html>
