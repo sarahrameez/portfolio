@@ -90,7 +90,7 @@
         <h1 class="title">About Me</h1>
         <div class="section-container section-container-about">
             <div class="section-left-container">
-                <div class="section__pic-container">
+                <div class="section_about_pic-container">
                     <img src="./assets/about-pic.png" 
                     alt="profile picture"
                     class="about-pic">
@@ -133,7 +133,7 @@
         class="icon arrow"
         onclick="location.href='./#skills'">
     </section>
-        <section id="skills">
+    <section id="skills">
             <p class="section__text__p1">Explore My</p>
             <h1 class="title">Skills</h1>
             <div class="skills-details-container">
@@ -262,12 +262,34 @@
             alt="arrow icon" 
             class="icon arrow"
             onclick="location.href='./#projects'">
-        </section>
-        <section id="projects">
+    </section>
+    <section id="projects">
             <p class="section__text__p1">Browse My Recent</p>
             <h1 class="title">Projects</h1>
             <div class="skills-details-container">
                 <div class="about-containers">
+
+                    <div class="details-container color-container">
+                        <div class="article-container project-container">
+                            <div class="project-img-container">
+                                <img src="./assets/uoft_cover.avif" alt="logistic-regression-shelter"
+                                class="project-img">
+                                <div class="btn-container project-tag-container">
+                                    <button class="btn btn-color-2 project-tag-btn">Python</button>
+                                    <button class="btn btn-color-2 project-tag-btn">Machine Learning</button>
+                                </div>
+                            </div>
+                            <h2 class="skills-sub-title project-title">Popular Music During Recession</h2>
+                            <div class="btn-container">
+                                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/sarahrameez/recession-music'">
+                                    Github
+                                </button>
+                                <button class="btn btn-color-2 project-btn" onclick="window.location.href = './recession-music/recession.html'">
+                                    Report
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="details-container color-container">
                         <div class="article-container project-container">
@@ -276,7 +298,7 @@
                                 class="project-img">
                                 <div class="btn-container project-tag-container">
                                     <button class="btn btn-color-2 project-tag-btn">R</button>
-                                    <button class="btn btn-color-2 project-tag-btn">PowerBI</button>
+                                    <button class="btn btn-color-2 project-tag-btn">Logistic Regression</button>
                                 </div>
                             </div>
                             <h2 class="skills-sub-title project-title">Toronto Homeless Shelter Shortage</h2>
@@ -341,8 +363,8 @@
             alt="arrow icon" 
             class="icon arrow"
             onclick="location.href='./#contact'">
-        </section>
-        <section id="contact">
+    </section>
+    <section id="contact">
             <p class="section__text__p1">Get in Touch</p>
             <h1 class="title">Contact</h1>
             <div class="contact-info-upper-container">
@@ -357,8 +379,8 @@
                     <p><a href="https://www.linkedin.com/in/sarahnayyar/">LinkedIn</a></p>
                 </div>
             </div>
-        </section>
-        <footer>
+    </section>
+    <footer>
             <nav>
                 <div class="nav-links-container">
                     <ul class="nav-links">
@@ -370,7 +392,8 @@
                 </div>
             </nav>
             <p>Copyright &#169; Sarah Rameez 2024</p>
-        </footer>
+    </footer>
+    
     <script src="particles.js"></script>
     <script src="app.js"></script>
     <script src="script.js"></script>

@@ -57,7 +57,7 @@ a {
 
 a:hover {
     color: gray;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     text-underline-offset: 1rem;
     text-decoration-color: rgb(181,181,181);
 }
@@ -153,6 +153,7 @@ section {
     padding: 4vh;
     height: 96vh;
     margin: 0 10rem;
+    max-width: 100%;
     box-sizing: border-box;
     min-height: fit-content;
 }
@@ -183,16 +184,23 @@ section {
     /* transform: translate(0%, 10%); */
     margin: 20px;
     background-color: transparent;
+    text-align: center;
+}
+
+.first-text {
+    text-align: center;
+    font-size: large;
 }
 
 .title {
+    font-size: xx-large;
     justify-self: center;
 }
 
 .section__pic-container {
     display: flex;
-    height: 50vh;
-    width: 50vh;
+    height: 60vh;
+    width: 60vh;
     /* position: absolute;
     display: flex;
     justify-content: center;
@@ -230,6 +238,8 @@ section {
     gap: 0.75rem;
     position: relative;
     overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .indent {
@@ -340,6 +350,7 @@ tr:hover {
 
 .about-pic {
     border-radius: 2rem;
+    display: block;
 }
 
 .arrow {
@@ -398,10 +409,69 @@ tr:hover {
 }
 
 article {
+    padding: 0.5vh;
     display: flex;
     width: 10rem;
     justify-content: space-around;
     gap: 0.5rem;
+}
+
+#article-holder {
+    padding: 5rem;
+    gap: 2rem;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    /* Add overflow for parents, if needed */
+    position: relative; /* Ensure sticky works within the parent container */
+}
+
+#table-of-contents {
+    position: -webkit-sticky;
+    position: sticky; /* Make the table of contents sticky */
+    top: 1rem; /* Distance from the top of the viewport */
+    align-self: flex-start; /* Align to the top of the section */
+    max-height: calc(100vh - 2rem); /* Ensure it doesn't exceed the viewport height */
+    overflow-y: auto; /* Add scrolling if the content is too long */
+    width: 20%; /* Fixed width for the table of contents */
+    min-width: 200px; /* Ensure it doesn't get too small */
+    padding: 1rem;
+    border-radius: 8px;
+
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: space-between; /* Distribute items evenly */
+}
+
+
+#table-of-contents ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#table-of-contents li {
+    margin-bottom: 1rem;
+}
+
+#table-of-contents a {
+    text-decoration: none;
+    color: rgb(85, 85, 85);
+    transition: color 0.2s;
+}
+
+#table-of-contents a:hover {
+    color: cadetblue;
+}
+
+/* Highlighted TOC item */
+#table-of-contents li.active a {
+    color: cadetblue;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#article {
+    flex: 1; /* Allow the article to take the remaining space */
 }
 
 article .icon {

@@ -1,3 +1,45 @@
+@media screen and (max-width: 1600px) {
+    #particles-js {
+        height: 83vh;
+        margin-bottom: 4rem;
+    }
+    .menu-links li a {
+        font-size: 1rem;
+    }
+    .header {
+        margin-top: 1rem;
+        padding-right: 2rem;
+    }
+    .header-report {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        max-width: 40%;
+    }
+
+    section, .section-container {
+        height: fit-content;
+    }
+    .section-left-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    section {
+        margin: 0 5%;
+    }
+
+    .section___pic-container, .about-pic {
+        max-height: 40vh;
+        margin: 0 auto 2rem;
+        justify-items: center;
+    }
+
+    .about-containers {
+        flex-wrap: wrap;
+    }
+}
+
 @media screen and (max-width: 1400px) {
     #particles-js {
         height: 83vh;
@@ -18,14 +60,25 @@
         max-width: 40%;
     }
 
-    .about-containers {
-        flex-wrap: wrap;
+    section, .section-container {
+        height: fit-content;
     }
-    .article_pic-container {
-        width: auto;
-        height: auto;
+    .section-left-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    section {
+        margin: 0 5%;
+    }
+
+    .section___pic-container, .about-pic {
+        max-height: 40vh;
         margin: 0 auto 2rem;
         justify-items: center;
+    }
+
+    .about-containers {
+        flex-wrap: wrap;
     }
 }
 
@@ -56,8 +109,7 @@
         margin: 0 5%;
     }
     .section___pic-container, .about-pic {
-        width: 60%;
-        height: 60%;
+        max-height: 40vh;
         margin: 0 auto 2rem;
         justify-items: center;
     }
@@ -110,8 +162,7 @@
         text-align: center;
     }
     .section___pic-container, .about-pic {
-        width: auto;
-        height: 46VW;
+        max-height: 25vh;
         justify-content: center;
     }
     .section__text__p2 {
@@ -129,5 +180,16 @@
         align-items: center;
         gap: 2rem;
         max-width: 40%;
+    }
+}
+
+@media (max-width: 768px) {
+    #article-holder {
+        flex-direction: column;
+    }
+
+    #table-of-contents {
+        width: 100%;
+        max-height: none;
     }
 }

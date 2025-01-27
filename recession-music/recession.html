@@ -1,0 +1,233 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicting Shelter Availability in Toronto Using Logistic Regression</title>
+    <link rel="stylesheet" href="../toronto-shelter-logistic/style-shelter.css">
+    <link rel="stylesheet" href="../mediaqueries.css">
+    <link rel="icon" 
+     type="image/png" 
+     href="../assets/website-icon.png">
+</head>
+<body>
+    <div id="particles-js">
+        <nav id="desktop-nav">
+            <div class="logo">Sarah Rameez</div>
+            <div>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Back to Portfolio</a></li>
+                    <!-- <li><a href="../index.html#skills">Skills</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li> -->
+                </ul>
+            </div>
+        </nav>
+        <nav id="hamburger-nav">
+            <div class="logo">Sarah Rameez</div>
+            <div class="hamburger-menu">
+                <div class="hamburger-icon" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="menu-links">
+                    <li><a href="../index.html" onclick="toggleMenu()">Back to Portfolio</a></li>
+                    <!-- <li><a href="../index.html#skills" onclick="toggleMenu()">Skills</a></li>
+                    <li><a href="../index.html#projects" onclick="toggleMenu()">Projects</a></li>
+                    <li><a href="../index.html#contact" onclick="toggleMenu()">Contact</a></li> -->
+                </div>
+            </div>
+        </nav>
+        <div class="header header-report">
+            <h1 class="title">Popular Music in Recessions in the US</h1>
+            <div class="section__text__p2 text-container">
+                <p class="first-text"><a href="mailto:rebecca.mathews@mail.utoronto.ca">Rebecca Mathews</a>, <a href="mailto:sarah.rameez@mail.utoronto.ca"">Sarah Rameez</a>, <a href="mailto:charlotte.rahme@mail.utoronto.ca">Charlotte Rahme</a>, <a href="mailto:tsitsi.macherera@utoronto.ca">Tsitsi Macherera</a></p>
+            </div>
+            <div class="section__pic-container">
+                <img src="../assets/recession-music/cover.png" 
+                alt="map of toronto"
+                class="about-pic">
+            </div>
+            <br>
+            <hr>
+            </div>
+        </div>
+    </div>
+    <section id="article-holder">
+        <aside id="table-of-contents">
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#research-question">Problem Definition & Motivation</a></li>
+                <li><a href="#dataset-description">Description of Datasets</a></li>
+                <li><a href="#methodology">Methodology</a></li>
+                <li><a href="#experimental-results">Experimental Results</a></li>
+                <li><a href="#discussion">Discussion</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </aside>
+        <div id="article">
+            <div class="text-container" id="introduction">
+                <h3>Introduction</h3>
+                <p>
+                    Recessions are traditionally predicted based on factors such as domestic gross product, unemployment rates, and company profits, yet can be inaccurate and delayed in recognizing economic downturn. Despite how impactful a recession is on society, there is evidence of the failure of traditional economic models to accurately predict economic downturn. This project analyzes the relationship of popular music and recessions to explore if popular music is a cultural indicator that can predict economic downturn in the United States.  
+                </p>
+            </div>
+            <br>
+            <br>
+            <div class="text-container" id="research-question">
+                <h3>Problem Definition & Motivation</h3>
+                <p>
+                    Economic recessions in the United States have negative impacts on citizens’ quality of life, resulting in high unemployment rates and financial struggles (Sun Life Staff, 2024). In the United States, there have been four periods of recession since the year 1990, measured through GDP decline and often due to exceptional circumstances (Rasure, 2024). These periods of economic downturn vary in length and occur due to a myriad of reasons, which makes them difficult for average citizens to anticipate. Despite this, solutions to mitigate the consequences of a recession are preventative measures, such as relying on savings, building emergency funds, and strict budget plans (Sun Life Staff, 2024).
+                    <br></br>
+                    There are many governing bodies that devote efforts to predicting recessions in order to implement measures that can improve the economy. However, due to the increased complexity of the economy, traditional predictive methods that rely on sole factors such as GDP can fail to accurately predict recessions (Shaw, 2017). Citizens’ success in navigating periods of recession is contingent on their ability to prepare for the economic downturn with ample notice. As a result, accurate and swift predictive models are critical. This project aims to explore the effect of incorporating cultural indicators, such as popular music, as a non-traditional predictive model to anticipate periods of recession
+                </p>
+            </div>
+            <br>
+            <br>
+            <div class="text-container" id="dataset-description">
+                <h3>Description of Datasets</h3>
+                <p>
+                    We investigated whether certain music and musical components (e.g. beats per minute (bpm), lyrics, genres) became more popular during times of economic downturn. We compared music popularity trends during the three latest U.S economic recessions against popularity trends durings times of relative economic stability.  As discussed in our proposal, we used the datasets Billboard Hot 100 (collection of billboard 100 charts from 1958 to 2024); Spotify Web API (contains specific attributes for songs in the Spotify collection); Last.FM API (contains descriptive tags for songs in the catalogue); MusiXmatch API (contains song lyrics in a bag of words format) and a NBER dataset (contains a time series of the U.S economic recessions). 
+                    <br>
+                    <h4>Limitations</h4>
+                    <p>
+                        There were several limitations that impacted data collection and analysis. One major limitation was our reliance on the Billboard 100 dataset as a measure of song popularity. Although a respected authority in music data tracking,  Billboard is not entirely transparent about how it determines its rankings, consequently there are potential biases we are not aware of such as business practices that increase a song’s likelihood of appearing on the charts. In addition, the Billboard 100 dataset only captures general popularity. It does not track the listening patterns of smaller and non-traditional listening groups (e.g consumers of second hand physical media) and less popular music genres (non-english, metal, instrumental, etc). Consequently, our study only analyzes changes in popular music consumption, not music overall. Further research is required on non-popular music and non-traditional music consumption.  Further limitations include our inattention to outliers. Certain breakout songs and artists (e.g Lady Gaga, Elton John)  that dominated the charts for several weeks may have skewed the popularity of certain song characteristics. It is also likely that this domination occurred regardless of the economic conditions at the time; however other trends may have been eclipsed by this popularity. Further research is needed on these outliers. 
+                        <br></br>
+                        We acknowledge that the process of song creation, from conceptualization to release, may span months, and some songs may remain in the archives for years until they are selected by an artist to perform. These factors could mean that a song written during a period of reflection is not released until the economy is stabilized, leaving us unable to derive the themes reflected in those songs.
+                        <br></br>
+                        An additional limitation was incomplete datasets. When attempting to collect song genres, the Last FM API only produced genre tags for 15% for the database, which made it untenable for our analysis. This variable was dropped from the analysis to avoid limiting the data available for training our models. 
+                    </p>
+                </p>
+            </div>
+            <br>
+            <br>
+            <div class="text-container" id="methodology">
+                <h3>Methodology</h3>
+                <h4>Data Cleaning</h4>
+                <p>
+                    Several data cleaning activities were completed during pre-processing. We began by standardizing the strings (e.g. song names, artist names) to lowercase across the music datasets to ensure accurate dataset joining.  Punctuation was also removed from strings to prevent joining errors. Following this, we standardized empty values across all datasets to ‘NA’. 
+                    <br></br>
+                    Across datasets we standardized the date/time columns to the standard pandas format of the “YYYY-MM-DD”.  For the Hot 100 dataframe, an additional column containing just the year was created in order to join the dataframe with the recession dataset.  In addition to the date and time standardization, data outside our analysis range ( data recorded 1990 to 2024) was filtered out of the recession dataset.
+                    <br></br>
+                    To increase the interpretability of the datasets, we defined and utilized a function for the renaming of columns across dataframes. In the recession dataset the following columns were renamed: 
+                    <br>
+                    Original Name → Rename, Date → Recession Date and USREC → Recession.
+                </p>
+                <br>
+                <h4>Descriptive Analysis</h4>
+                <p>
+                    The analysis focuses on term frequency distributions grouped by year to identify recurring themes or shifts in lyrical content. Stop words, such as common articles and prepositions, were removed to ensure the focus remained on meaningful terms. Further filtering excluded frequently used filler words like "yeah," "like," "ah," and "got," which are shared across songs and years, to highlight unique and relevant terms.
+                    <br></br>
+                    High-frequency terms such as "love," "know," "like," "yeah," "got," "baby," "oh," "na," "want," "let," and "time" were further isolated and removed from subsequent analyses to uncover more nuanced patterns. This approach revealed unique year-specific terms, offering insights into shifting cultural narratives and societal concerns.
+                </p>
+                <br>
+                <h4>Numerical Analysis</h4>
+                <p>
+                    We began by defining functions for generating a list of top songs and calculated the top 20 songs across our specified range (1990-2024), top 20 songs during non-recession periods and top 20 songs during recession periods. This served as a starting point into understanding popular music over time. Next we conducted statistical tests on the variables “song danceability” and “beats per minutes” and plotted histograms for the same (Appendix, Figure 1, Figure 2). It helped us evaluate the mean and standard deviations of the tempo and danceability of songs during recession and non-recession years. 
+                    <br></br>
+                    This analysis demonstrated that while there is a small difference in song danceability between recession and non-recession years, the overall patterns remain largely consistent and that the average song tempo remains largely consistent across recession and non-recession years, with only slight variations.
+                </p>
+                <br>
+                <h4>Textual Analysis</h4>
+                <p>
+                    In order to determine the similarity between various songs across periods of recession, we vectorized the lyrics for each song according to the TF-IDF Vectorizer, in order to apply more complex models. We applied shingling in the range of 1-3 n-grams as we are aware that artists often utilize repetition of certain words or phrases in order to enhance the rhythm and rhyme of the song. The resulting vectors aid in our K-Means clustering model
+                    <br></br>
+                    We also created two new variables using the NLTK library, namely the ‘sentiment_compound_score’ of the tokenized lyrics, which contains a value for the positivity or negativity the lyrics content of each song, as well ‘stop_words_ratio’ which is the percentage of stop words to total number of words in a song. These variables allow us to convert lyrics into numbers using a variety of methods to aid in our decision tree model. 
+                    <h5>Song Lyrics Textual Filter Application</h5>
+                    <p>
+                        In the initial output of frequent terms for song lyrics grouped by year, the results demonstrated similar most frequent terms across all years. We isolated the top ten frequent terms and elected to remove these from the term frequency analysis across years in order to retrieve richer data regarding the unique frequent words. These terms included: love, know, like, yeah, got, babi, oh, na, want, let, time. By excluding these high-frequency terms shared across years, the analysis uncovered unique year-specific terms. These terms provided insights into shifting cultural narratives and societal concerns, offering a lens into how music might reflect economic and social sentiments.
+                    </p>
+                </p>
+                <br>
+                <h4>Diagnostic Analysis</h4>
+                <h5>Audio Features Classification</h5>
+                <p>
+                    The classification model aims to predict whether a song would be classified as popular during periods of recession versus periods of economic stability. Our predictor variables include the audio features of the song as well as the compound score of the lyrics via sentiment analysis. 
+                    <br></br>
+                    We utilized the Decision Tree Classifier from Scikit-Learn’s library as our main tool. As the majority of the audio features were numeric in nature, they were discretized using equal-depth binning, prior to encoding. The initial trained model achieved a base accuracy score of 92%. We further trained the model with three different levels of tree depth, though this did not result in a significant difference in accuracy scores. 
+                </p>
+                <h5>K-Means Clustering on Song Lyrics</h5>
+                <p>
+                    In order to investigate the relationship between song lyrics text and distribution on years of recession or non-recession, we conducted K-Means clusters on the song lyrics regardless of the song’s charting year. Due to the curiosity of investigating the percentage proportion of years of recession vs non-recession within each cluster, we established a number of two clusters. The song lyrics clusters were formed of the tokenized song lyrics, for songs to be clustered based on similarity of lyrics. The visual result demonstrates two clear clustering groups, although there is general grouping of all song lyrics within one mass (Appendix, Visual 3). With the two clusters, we grouped each individual cluster by year of recession binary variable, in order to present the percentage of recession year vs non-recession year components within each cluster. The intuition follows that if recession impacts song lyric’s frequent words and content, there would be a correlation in which songs cluster together and a corresponding high or low percentage of recession years. 
+                </p>
+            </div>
+            <br>
+            <br>
+            <div class="text-container" id="experimental-results">
+                <h3>Experimental Results</h3>
+                <p>
+                    Through the clustering of song lyrics and the classification of audio features, we have gathered engaging results for the project. 
+                    <h4>Audio Features Classification</h4>
+                    <p>
+                        The classification model achieved an impressive 92% accuracy in predicting whether a song was popular during periods of recession. Among the audio features analyzed, song_tempo (measured as beats per minute) emerged as the most significant predictor, with the highest information gain of 0.175400. This indicates that tempo plays a vital role in determining song popularity during economic downturns. Additional important predictors included song_acoustiness (0.144438) and song_danceability (0.131409). In contrast, variables such as sentiment_compound_score and song_explicity contributed the least, with information gains of 0.085632 and 0.035003, respectively.
+                        <br></br>
+                        In retrospect, it might also be said that the model predicts song popularity overall given a lack of notable change in song popularity trends  between recession and non-recession periods. 
+                    </p>
+                    <br>
+                    <h4>Clustering Song Lyrics</h4>
+                    <p>
+                        The results of the K-Means clustering on song lyrics show no strong relationship between periods of recession and song lyric themes. The clustering analysis divided the songs into two groups, which were analyzed for their proportion of songs from recession versus non-recession years. Cluster 0 contained 92.2% of songs from non-recession years, while Cluster 1 had 90.8% of songs from non-recession years. This marginal difference suggests minimal influence of recession on the clustering of song lyrics.
+                        <br></br>
+                        While there was little evidence of significant differences in lyrics between recession and non-recession years, the analysis revealed a small increase in the average danceability of songs during non-recession years. This could suggest a preference for more upbeat, energetic music during times of economic stability. However, the beats per minute (tempo) of songs showed negligible variations between the two periods, with distributions ranging consistently from 60 BPM to 180 BPM regardless of economic conditions.
+                    </p>
+                </p>
+            </div>
+            <br>
+            <div class="text-container" id="discussion">
+                <h3>Discussion & Recommendations</h3>
+                <p>
+                    The results of the audio features classification underscore the importance of song tempo in determining the popularity of music during recessionary periods. This aligns with psychological theories suggesting that rhythmic or paced music can influence mood, potentially offering solace or escapism during difficult times. Song_acoustiness and song_danceability also contributed significantly, hinting at the enduring appeal of acoustic and rhythm-driven songs across economic cycles. However, the relatively low contribution of variables such as sentiment_compound_score highlights that lyrical content—at least in terms of positivity or negativity—may be less indicative of recessionary influence than initially hypothesized.
+                    <br></br>
+                    The clustering analysis did not provide strong evidence to support the hypothesis that song lyrics reflect or respond to macroeconomic conditions. The lack of differentiation in recession and non-recession years within the clusters suggests that popular music may not adjust its themes significantly in response to economic downturns. This result could be attributed to the homogenized nature of popular music, which often prioritizes broad appeal over addressing specific societal or economic concerns.
+                    <br>
+                    <h4>Future Questions</h4>
+                    <p>
+                        As addressed in limitations, this analysis provides a high-level base for further research on the connection between music consumption and economic conditions. This future work could address questions such as 
+                        <ol>
+                            <li>1. Trends in music consumption prior to, during and proceeding particular events that triggered economic recessions (e.g. country music consumption proceeding 9/11) .</li>
+                            <li>2. Trends in music consumption by non-popular music listeners during economic recessions (e.g. analyzing specific genres that do not typically appear in the Billboard Top 100 like Jazz, Lo-fi, Metal).</li>
+                            <li>3. Outliers analysis - analyzing long-standing number one songs in the context of recessions.</li>
+                        </ol>
+                    </p>
+                </p>
+            </div>
+            <br></br>
+            <div class="text-container" id="conclusion">
+                <h3>Conclusion</h3>
+                <p>
+                    Our research investigates whether economic conditions have an impact on popular music consumption in the United States. We generated lists of songs during and after periods of recession (descriptive analysis),  audio feature classification (diagnostic analysis), and k-means clustering on song lyrics (textual analysis). The audio features classification revealed that attributes such as song_tempo, song_acoustiness, and song_danceability are important predictors of music popularity during recessions. However, the findings indicate that lyrical content, as measured by sentiment analysis and clustering, does not significantly differ between recession and non-recession years.
+                    <br></br>
+                    The results underscore the limitations of popular music as a standalone cultural predictor for economic downturns. While certain audio features demonstrate potential predictive utility, the overall patterns in music consumption appear relatively stable, irrespective of economic conditions.
+                    <br></br>
+                    This study highlights the need for further exploration into the broader cultural and psychological factors influencing music trends during economic downturns. Incorporating data from non-mainstream music genres and alternative listening platforms could provide a more comprehensive understanding of music’s role as a cultural indicator. Additionally, future research could examine whether other cultural artifacts, such as movies, literature, or social media trends, offer more robust predictors of economic sentiment.
+                    <br></br>
+                    Ultimately, while popular music reflects enduring human themes, its utility as a predictor of recessions remains limited. This reinforces the importance of integrating cultural indicators with traditional economic models for more accurate and timely predictions of economic downturns.
+                </p>
+            </div>
+            <br></br>
+            <div class="text-container" id="references">
+                <h3>References</h3>
+                <p>
+                    Developer Spotify. (n.d.). API calls | Spotify for Developers. Developer.spotify.com. https://developer.spotify.com/documentation/web-api/concepts/api-calls 
+                    <br></br>
+                    Earhart, E. (2024). Billboard Hot 100(1958-2024). Kaggle.com. https://www.kaggle.com/datasets/elizabethearhart/billboard-hot-1001958-2024
+                    <br></br>
+                    Kumar, S. (2022). US Recession Dataset. Kaggle.com. https://www.kaggle.com/datasets/shubhaanshkumar/us-recession-dataset
+                    <br></br>
+                    milliondataset. (n.d.). Welcome! | Million Song Dataset. Millionsongdataset.com. http://millionsongdataset.com
+                    <br></br>
+                    Potters, C. (2023, September 8). A Review Of Past Recessions. Investopedia. https://www.investopedia.com/articles/economics/08/past-recessions.asp
+                    <br></br>
+                    Shaw, A. (2017, September 2). Why economic forecasting has always been a flawed science. The Guardian. https://www.theguardian.com/money/2017/sep/02/economic-forecasting-flawed-science-data
+                    <br></br>
+                    What is a recession and what does it mean for you? (n.d.). Www.sunlife.ca. https://www.sunlife.ca/en/tools-and-resources/money-and-finances/managing-your-money/what-is-a-recession-and-what-does-it-mean-for-you/  
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="../toronto-shelter-logistic/toc.js"></script>
+</body>
+</html>
